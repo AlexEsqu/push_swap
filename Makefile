@@ -6,7 +6,7 @@
 #    By: mkling <mkling@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/14 14:56:12 by mkling            #+#    #+#              #
-#    Updated: 2024/08/23 15:14:55 by mkling           ###   ########.fr        #
+#    Updated: 2024/08/26 12:42:33 by mkling           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,26 +28,20 @@ CFLAGS		= -Wall -Wextra -Werror
 
 
 all:		${NAME}
-
-${NAME}:	${OBJS}
-			# $(MAKE) -C ./inc/libft
-			$(CC) $(CFLAGS) -o $(NAME) $(SRCS) $(LIBS)
+			$(CC) $(CFLAGS) -o $(NAME) $(SRCS)
 
 $(BIN_DIR)/%.o:		$(SRC_DIR)/%.c
 					mkdir -p $(BIN_DIR)
 					$(CC) $(CFLAGS) $(foreach dir,$(INC_DIR), -I$(dir)) -c $< -o $@
 
 debug:		${OBJS}
-			# $(MAKE) -C ./inc/libft
-			$(CC) $(CFLAGS) -g -o $(NAME) $(SRCS) $(LIBS)
+			$(CC) $(CFLAGS) -g -o $(NAME) $(SRCS)
 
 clean:
 			rm -rf $(BIN_DIR)
-			# $(MAKE) -C ./inc/libft clean
 
 fclean:		clean
 			rm -rf $(NAME)
-			# $(MAKE) -C ./inc/libft fclean
 
 re:			fclean all
 

@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:34:35 by mkling            #+#    #+#             */
-/*   Updated: 2024/08/23 15:13:50 by mkling           ###   ########.fr       */
+/*   Updated: 2024/08/26 13:38:52 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,24 +45,6 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (number * minus);
-}
-
-void	ft_lstadd_front(t_node **lst, t_node *new)
-{
-	new->next = *lst;
-	(*lst) = new;
-}
-
-void	ft_lstiter(t_node *lst, void (*f)(int *))
-{
-	t_node	*iteri;
-
-	iteri = lst;
-	while (iteri)
-	{
-		(*f)(&iteri->data);
-		iteri = iteri->next;
-	}
 }
 
 static void	ft_bzero(void *ptr, unsigned long len)

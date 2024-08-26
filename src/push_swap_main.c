@@ -6,21 +6,24 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:02:15 by mkling            #+#    #+#             */
-/*   Updated: 2024/08/23 15:23:49 by mkling           ###   ########.fr       */
+/*   Updated: 2024/08/26 14:46:32 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	put_nbr_in_linklist(char *nbr, t_node *stack)
+int	is_already_in_stack(t_node **stack, int num)
 {
-	t_node	*node;
+	t_node	*itering;
 
-	node = malloc(sizeof(t_node));
-	if (!node)
-		return (-1);
-	node->data = ft_atoi(nbr);
-	ft_lstadd_front(&stack, node);
+	itering = NULL;
+	if (*stack == 0)
+		return (0);
+	while (itering)
+	{
+		if (itering->data == num)
+			return (1);
+	}
 	return (0);
 }
 
@@ -29,27 +32,23 @@ int	wrangle_input(int argc, char **argv, t_node *initial_stack)
 	char	**input_array;
 	int		i;
 
-	if (argc < 2)
-		return (-1);
 	if (argc == 2)
 	{
 		i = 0;
 		input_array = ft_split(argv[1], ' ');
-		while (input_array[i] != NULL)
+		while (input_array[i++] != NULL)
 		{
-			if (put_nbr_in_linklist(input_array[i], initial_stack) == -1)
+			if (put_nbr_in_linklist(input_array[i], &initial_stack) == -1)
 				return (-1);
-			i++;
 		}
 	}
 	if (argc > 2)
 	{
 		i = 1;
-		while (i < argc)
+		while (argc > i++)
 		{
-			if (put_nbr_in_linklist(argv[i], initial_stack) == -1)
+			if (put_nbr_in_linklist(argv[i], &initial_stack) == -1)
 				return (-1);
-			i++;
 		}
 	}
 	return (0);
@@ -62,10 +61,11 @@ void	print_list(int *num)
 
 int	main(int argc, char **argv)
 {
-	t_node	initial_stack;
+	t_node	*initial_stack;
+	//t_node	*sorted_stack;
 
-	if (wrangle_input(argc, argv, &initial_stack) == -1)
+	initial_stack = NULL;
+	if (argc < 2 || wrangle_input(argc, argv, initial_stack) == -1)
 		return (-1);
-	ft_lstiter(&initial_stack, print_list);
 	return (0);
 }
