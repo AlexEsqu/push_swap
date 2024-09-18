@@ -1,26 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/23 12:34:35 by mkling            #+#    #+#             */
-/*   Updated: 2024/08/26 13:38:52 by mkling           ###   ########.fr       */
+/*   Created: 2024/05/22 17:27:11 by mkling            #+#    #+#             */
+/*   Updated: 2024/05/30 14:19:49 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "push_swap.h"
-
-int	ft_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
 
 int	ft_atoi(const char *str)
 {
@@ -45,26 +33,4 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (number * minus);
-}
-
-static void	ft_bzero(void *ptr, unsigned long len)
-{
-	unsigned char	*str;
-
-	str = ptr;
-	while (len--)
-		*str++ = 0;
-}
-
-void	*ft_calloc(size_t nbr, size_t size)
-{
-	void	*result;
-
-	if (nbr == 0 || size == 0 || ((size_t) - 1 / nbr) < size)
-		return (malloc(0));
-	result = malloc(nbr * size);
-	if (!result)
-		return (NULL);
-	ft_bzero(result, nbr * size);
-	return (result);
 }

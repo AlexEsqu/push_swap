@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_split.c                                  :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/23 12:24:48 by mkling            #+#    #+#             */
-/*   Updated: 2024/08/23 15:12:23 by mkling           ###   ########.fr       */
+/*   Created: 2024/05/26 17:51:52 by mkling            #+#    #+#             */
+/*   Updated: 2024/06/02 15:04:53 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include <stdlib.h>
+#include "libft.h"
 
 static size_t	countword(const char *str, char sep)
 {

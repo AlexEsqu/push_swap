@@ -1,43 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_errors.c                                 :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/26 13:50:53 by mkling            #+#    #+#             */
-/*   Updated: 2024/08/26 14:48:20 by mkling           ###   ########.fr       */
+/*   Created: 2024/05/28 14:35:43 by mkling            #+#    #+#             */
+/*   Updated: 2024/05/31 15:03:12 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include <stdlib.h>
+#include "libft.h"
 
-void	free_array(char **array)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	int	i;
+	char			*result;
+	size_t			len;
+	unsigned int	i;
 
+	len = ft_strlen(s);
+	result = malloc((len + 1) * sizeof(char));
+	if (!result || !f || !s)
+		return (NULL);
+	ft_memcpy(result, s, len);
 	i = 0;
-	while (array[i++] != NULL)
-		free(array[i]);
-	free(array);
-}
-
-void	free_list(t_node **linked_list, void (*free)(void *))
-{
-	t_node	*next;
-	t_node	*current;
-
-	current = *linked_list;
-	while (current != NULL)
+	while (i < len)
 	{
-		next = current->next;
-		free(current);
-		current = next;
+		result[i] = (*f)(i, result[i]);
+		i++;
 	}
-	*linked_list = NULL;
+	result[i] = '\0';
+	return (result);
 }
-
-/*int	self_destruct(t_node *stack, char **argv)
-{
-
-}*/
