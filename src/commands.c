@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 14:11:15 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/21 15:34:34 by mkling           ###   ########.fr       */
+/*   Updated: 2024/09/21 19:02:19 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ void	rotate_down(t_dlst **stack, t_dlst **if_other_stack)
 			write(1, "rrb\n", 4);
 		return ;
 	}
+	if (*if_other_stack == NULL || stack_len(*if_other_stack) == 1)
+		return ;
 	bottom_node = extract_bottom_node(if_other_stack);
 	add_on_bottom_of_stack(if_other_stack, bottom_node);
 	write(1, "rrr\n", 4);

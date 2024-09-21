@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:50:53 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/19 14:31:50 by mkling           ###   ########.fr       */
+/*   Updated: 2024/09/21 16:09:57 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,22 @@ int	is_duplicate(t_dlst *stack, int num)
 		if (stack->data == num)
 			return (1);
 		stack = stack->next;
+	}
+	return (0);
+}
+
+int	contains_non_digit(char *str)
+{
+	while (*str == ' ' || *str == '\t' || *str == '\n'
+		|| *str == '\r' || *str == '\f' || *str == '\v')
+		str++;
+	if (*str == '-' || *str == '+')
+		str++;
+	while (*str)
+	{
+		if (!ft_isdigit(*str))
+			return (1);
+		str++;
 	}
 	return (0);
 }
@@ -55,9 +71,8 @@ int	error_exit(t_dlst *stack)
 	exit(1);
 }
 
-void	success_exit(t_dlst *stack_a, t_dlst *stack_b)
+void	success_exit(t_dlst *stack_a)
 {
 	doublelst_clear(stack_a);
-	doublelst_clear(stack_b);
 	exit(0);
 }

@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:38:35 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/21 15:39:21 by mkling           ###   ########.fr       */
+/*   Updated: 2024/09/21 16:10:23 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	put_nbr_at_bottom_stack(char *nbr, t_dlst **stack)
 	long	num;
 
 	num = ft_atol(nbr);
-	if (is_overflow(num) || is_duplicate(*stack, (int)num))
+	if (is_overflow(num) || is_duplicate(*stack, (int)num)
+		|| contains_non_digit(nbr))
 		error_exit(*stack);
 	node = doublelst_new(num);
 	if (!node)

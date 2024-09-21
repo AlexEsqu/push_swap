@@ -6,11 +6,27 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:02:15 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/21 15:12:44 by mkling           ###   ########.fr       */
+/*   Updated: 2024/09/21 18:38:14 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	test_cmd(t_dlst **stack_a, t_dlst **stack_b)
+{
+	push_top(stack_a, stack_b);
+	print_both_stacks(stack_a, stack_b);
+	swap_top(stack_a, stack_a);
+	print_both_stacks(stack_a, stack_b);
+	rotate_up(stack_a, stack_b);
+	print_both_stacks(stack_a, stack_b);
+	rotate_down(stack_a, stack_b);
+	print_both_stacks(stack_a, stack_b);
+	// rotate_up(stack_a, NULL);
+	// print_both_stacks(stack_a, stack_b);
+	// rotate_down(stack_a, NULL);
+	// print_both_stacks(stack_a, stack_b);
+}
 
 void	print_stack(t_dlst **stack)
 {
@@ -41,9 +57,11 @@ int	main(int argc, char **argv)
 	init_stacks(argc, argv, &stack_a, &stack_b);
 	if (is_sorted(stack_a))
 		return (0);
+	test_cmd(&stack_a, &stack_b);
 	if (stack_len(stack_a) < 4)
 		tiny_sort(&stack_a);
 	else
 		mecha_turk_sort(&stack_a, &stack_b);
+	success_exit(stack_a);
 	return (0);
 }
