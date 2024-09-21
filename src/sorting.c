@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:49:47 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/21 15:35:16 by mkling           ###   ########.fr       */
+/*   Updated: 2024/09/21 15:52:05 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ void	rotate_to_top(t_dlst **stack, t_dlst *node)
 	set_index(*stack);
 	while ((*stack)->data != node->data)
 	{
-	if (node->is_above_median)
-		rotate_up(stack, NULL);
-	else
-		rotate_down(stack, NULL);
+		if (node->is_above_median)
+			rotate_up(stack, NULL);
+		else
+			rotate_down(stack, NULL);
 	}
 }
 

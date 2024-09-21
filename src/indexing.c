@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 13:49:47 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/21 11:57:39 by mkling           ###   ########.fr       */
+/*   Updated: 2024/09/21 15:39:26 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,32 @@ t_dlst	*find_smallest_num_in_stack(t_dlst *stack)
 		stack = stack->next;
 	}
 	return (smallest);
+}
+
+int	is_sorted(t_dlst *stack)
+{
+	if (!stack)
+		return (true);
+	while (stack->next != NULL)
+	{
+		if (stack->data > stack->next->data)
+			return (false);
+		stack = stack->next;
+	}
+	return (true);
+}
+
+int	stack_len(t_dlst *stack)
+{
+	int	stack_len;
+
+	stack_len = 0;
+	while (stack != NULL)
+	{
+		stack_len++;
+		stack = stack->next;
+	}
+	return (stack_len);
 }
 
 void	set_index(t_dlst *stack)

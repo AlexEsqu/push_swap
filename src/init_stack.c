@@ -6,37 +6,11 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:38:35 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/21 11:33:45 by mkling           ###   ########.fr       */
+/*   Updated: 2024/09/21 15:39:21 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	is_sorted(t_dlst *stack)
-{
-	if (!stack)
-		return (true);
-	while (stack->next != NULL)
-	{
-		if (stack->data > stack->next->data)
-			return (false);
-		stack = stack->next;
-	}
-	return (true);
-}
-
-int	stack_len(t_dlst *stack)
-{
-	int	stack_len;
-
-	stack_len = 0;
-	while (stack != NULL)
-	{
-		stack_len++;
-		stack = stack->next;
-	}
-	return (stack_len);
-}
 
 t_dlst	*doublelst_new(int content)
 {
