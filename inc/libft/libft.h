@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:15:08 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/10 13:56:15 by mkling           ###   ########.fr       */
+/*   Updated: 2024/09/19 13:06:02 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 char	*get_next_line(int fd);
 char	*ft_strjoinfree(char *s1, char const *s2);
 void	ft_free_tab(char **array);
+long	ft_atol(const char *str);
 
 #endif

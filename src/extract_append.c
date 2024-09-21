@@ -6,19 +6,22 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 17:17:03 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/18 17:23:48 by mkling           ###   ########.fr       */
+/*   Updated: 2024/09/21 15:33:28 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_dlst	*find_last_node(t_dlst *lst)
+t_dlst	*find_bottom_node(t_dlst *lst)
 {
 	t_dlst	*current;
 
-	current = lst;
-	if (current == NULL)
+	if (lst == NULL)
+	{
+		fprintf(stderr, "returning null\n");
 		return (NULL);
+	}
+	current = lst;
 	while (current->next != NULL)
 		current = current->next;
 	return (current);
@@ -41,8 +44,13 @@ t_dlst	*extract_bottom_node(t_dlst **src)
 {
 	t_dlst	*bottom_node;
 
-	bottom_node = find_last_node(*src);
-	if (*src)
+	bottom_node = find_bottom_node(*src);
+	if (!bottom_node)
+	{
+		fprintf(stderr, "emptyyy\n");
+		return (NULL);
+	}
+	if (*src && (*src)->next != NULL)
 		bottom_node->prev->next = NULL;
 	bottom_node->prev = NULL;
 	bottom_node->next = NULL;
@@ -78,7 +86,7 @@ void	add_on_bottom_of_stack(t_dlst **stack, t_dlst *node)
 	}
 	else
 	{
-		last_node = find_last_node(*stack);
+		last_node = find_bottom_node(*stack);
 		last_node->next = node;
 		node->prev = last_node;
 	}

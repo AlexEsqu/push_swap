@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:50:53 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/18 13:59:14 by mkling           ###   ########.fr       */
+/*   Updated: 2024/09/19 14:31:50 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,15 @@ int	is_overflow(int num)
 	return (0);
 }
 
-int	is_duplicate(t_dlst **stack, int num)
+int	is_duplicate(t_dlst *stack, int num)
 {
-	t_dlst	*itering;
-
-	itering = NULL;
-	if (*stack == 0)
+	if (stack == 0)
 		return (0);
-	while (itering)
+	while (stack)
 	{
-		if (itering->data == num)
+		if (stack->data == num)
 			return (1);
-		itering = itering->next;
+		stack = stack->next;
 	}
 	return (0);
 }
@@ -56,4 +53,11 @@ int	error_exit(t_dlst *stack)
 		doublelst_clear(stack);
 	write(1, "Error\n", 6);
 	exit(1);
+}
+
+void	success_exit(t_dlst *stack_a, t_dlst *stack_b)
+{
+	doublelst_clear(stack_a);
+	doublelst_clear(stack_b);
+	exit(0);
 }

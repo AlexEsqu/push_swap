@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:02:15 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/18 17:23:18 by mkling           ###   ########.fr       */
+/*   Updated: 2024/09/21 15:12:44 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	print_stack(t_dlst **stack)
 {
 	t_dlst	*current;
 
+	if (!(*stack))
+		return ;
 	current = (*stack);
 	fprintf(stderr, "printing stack\n");
 	while (current != NULL)
@@ -25,17 +27,23 @@ void	print_stack(t_dlst **stack)
 	}
 }
 
+void	print_both_stacks(t_dlst **a, t_dlst **b)
+{
+	print_stack(a);
+	print_stack(b);
+}
+
 int	main(int argc, char **argv)
 {
 	t_dlst	*stack_a;
 	t_dlst	*stack_b;
 
-	stack_a = init_stack(argc, argv);
-	stack_b = NULL;
-	print_stack(&stack_a);
-	rota_ra(&stack_a);
-	print_stack(&stack_a);
-	rrev_rra(&stack_a);
-	print_stack(&stack_a);
+	init_stacks(argc, argv, &stack_a, &stack_b);
+	if (is_sorted(stack_a))
+		return (0);
+	if (stack_len(stack_a) < 4)
+		tiny_sort(&stack_a);
+	else
+		mecha_turk_sort(&stack_a, &stack_b);
 	return (0);
 }
