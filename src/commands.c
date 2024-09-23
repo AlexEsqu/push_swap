@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 14:11:15 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/23 16:41:59 by alex             ###   ########.fr       */
+/*   Updated: 2024/09/23 17:11:03 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	push_top(t_dlst **src, t_dlst **dest)
 	add_on_top_of_stack(dest, top_node);
 	if (top_node->stack_id == 'b')
 	{
-		write(1, "pa\n", 3);
 		top_node->stack_id = 'a';
+		write(1, "pa\n", 3);
 	}
 	else
 	{
@@ -42,10 +42,9 @@ void	rotate_up(t_dlst **stack, t_dlst **if_other_stack)
 	add_on_bottom_of_stack(stack, top);
 	if (if_other_stack == NULL)
 	{
-		if ((*stack)->stack_id == 'a')
-			write(1, "ra\n", 3);
-		else
-			write(1, "rb\n", 3);
+		write(1, "r", 1);
+		write(1, &(*stack)->stack_id, 1);
+		write(1, "\n", 1);
 		return ;
 	}
 	if (!*if_other_stack || !(*if_other_stack)->next)
@@ -65,10 +64,9 @@ void	rotate_down(t_dlst **stack, t_dlst **if_other_stack)
 	add_on_top_of_stack(stack, bottom);
 	if (if_other_stack == NULL)
 	{
-		if (bottom->stack_id == 'a')
-			write(1, "rra\n", 4);
-		else if (bottom->stack_id == 'b')
-			write(1, "rrb\n", 4);
+		write(1, "rr", 2);
+		write(1, &(*stack)->stack_id, 1);
+		write(1, "\n", 1);
 		return ;
 	}
 	if (!*if_other_stack || !(*if_other_stack)->next)
@@ -89,10 +87,9 @@ void	swap_top(t_dlst **stack, t_dlst **if_other_stack)
 	(*stack)->next->data = tmp;
 	if (if_other_stack == NULL)
 	{
-		if ((*stack)->stack_id == 'a')
-			write(1, "sa\n", 3);
-		else
-			write(1, "sb\n", 3);
+		write(1, "s", 1);
+		write(1, &(*stack)->stack_id, 1);
+		write(1, "\n", 1);
 		return ;
 	}
 	tmp = (*if_other_stack)->data;

@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:02:15 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/23 16:37:59 by alex             ###   ########.fr       */
+/*   Updated: 2024/09/23 17:13:35 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 		tiny_sort(&stack_a);
 	else
 		mecha_turk_sort(&stack_a, &stack_b);
-	success_exit(stack_a);
+	doublelst_clear(stack_a);
 	return (0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   indexing.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 13:49:47 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/21 15:39:26 by mkling           ###   ########.fr       */
+/*   Updated: 2024/09/23 17:03:20 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	stack_len(t_dlst *stack)
 	return (stack_len);
 }
 
-void	set_index(t_dlst *stack)
+void	set_index(t_dlst *stack, t_dlst *if_other_stack)
 {
 	int	index;
 	int	median;
@@ -80,4 +80,6 @@ void	set_index(t_dlst *stack)
 		index++;
 		stack = stack->next;
 	}
+	if (if_other_stack)
+		set_index(if_other_stack, NULL);
 }
