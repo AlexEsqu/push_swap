@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:02:12 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/21 16:10:35 by mkling           ###   ########.fr       */
+/*   Updated: 2024/09/23 15:19:20 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	rotate_to_top(t_dlst **stack, t_dlst *node);
 void	push_cheapest(t_dlst **stack_src, t_dlst **stack_dest);
 
 /* ERRORS */
-int		is_overflow(int num);
+int		is_overflow(long num);
 int		is_duplicate(t_dlst *stack, int num);
 int		contains_non_digit(char *str);
 int		error_exit(t_dlst *stack);

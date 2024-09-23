@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:38:35 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/23 13:45:51 by alex             ###   ########.fr       */
+/*   Updated: 2024/09/23 15:20:51 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	init_stacks(int argc, char **argv, t_dlst **stack_a, t_dlst **stack_b)
 	if (argc > 2)
 		input_array = &argv[1];
 	if (!input_array)
-		error_exit(NULL);
+		exit(1);
 	while (input_array[i] != NULL)
 		put_nbr_at_bottom_stack(input_array[i++], stack_a);
 }
