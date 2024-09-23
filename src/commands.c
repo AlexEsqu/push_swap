@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 14:11:15 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/23 13:43:12 by alex             ###   ########.fr       */
+/*   Updated: 2024/09/23 15:13:47 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,16 @@ void	push_top(t_dlst **src, t_dlst **dest)
 
 void	rotate_up(t_dlst **stack, t_dlst **if_other_stack)
 {
-	t_dlst	*top_node;
+	t_dlst	*bottom;
 
 	if (!(*stack) || !(*stack)->next)
 		return ;
-	top_node = extract_top_node(stack);
-	add_on_bottom_of_stack(stack, top_node);
+	bottom = find_bottom_node(*stack);
+	bottom->next = *stack;
+	*stack = (*stack)->next;
+	(*stack)->prev = NULL;
+	bottom->next->prev = bottom;
+	bottom->next->next = NULL;
 	if (if_other_stack == NULL)
 	{
 		if ((*stack)->e_stack == STACK_A)
@@ -50,31 +54,43 @@ void	rotate_up(t_dlst **stack, t_dlst **if_other_stack)
 	}
 	if (!*if_other_stack || !(*if_other_stack)->next)
 		return ;
-	top_node = extract_top_node(if_other_stack);
-	add_on_bottom_of_stack(if_other_stack, top_node);
+	bottom = find_bottom_node(*if_other_stack);
+	bottom->next = *if_other_stack;
+	*if_other_stack = (*if_other_stack)->next;
+	(*if_other_stack)->prev = NULL;
+	bottom->next->prev = bottom;
+	bottom->next->next = NULL;
 	write(1, "rr\n", 3);
 }
 
 void	rotate_down(t_dlst **stack, t_dlst **if_other_stack)
 {
-	t_dlst	*bottom_node;
+	t_dlst	*bottom;
 
-	if (!(*stack) || !(*stack)->next)
+	if (!*stack || !(*stack)->next)
 		return ;
-	bottom_node = extract_bottom_node(stack);
-	add_on_top_of_stack(stack, bottom_node);
+	bottom = find_bottom_node(*stack);
+	bottom->prev->next = NULL;
+	bottom->next = *stack;
+	bottom->prev = NULL;
+	*stack = bottom;
+	bottom->next->prev = bottom;
 	if (if_other_stack == NULL)
 	{
-		if (bottom_node->e_stack == STACK_A)
+		if (bottom->e_stack == STACK_A)
 			write(1, "rra\n", 4);
-		else if (bottom_node->e_stack == STACK_B)
+		else if (bottom->e_stack == STACK_B)
 			write(1, "rrb\n", 4);
 		return ;
 	}
 	if (!*if_other_stack || !(*if_other_stack)->next)
 		return ;
-	bottom_node = extract_bottom_node(if_other_stack);
-	add_on_bottom_of_stack(if_other_stack, bottom_node);
+	bottom = find_bottom_node(*if_other_stack);
+	bottom->prev->next = NULL;
+	bottom->next = *if_other_stack;
+	bottom->prev = NULL;
+	*if_other_stack = bottom;
+	bottom->next->prev = bottom;
 	write(1, "rrr\n", 4);
 }
 
