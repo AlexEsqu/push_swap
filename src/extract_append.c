@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extract_append.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 17:17:03 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/21 18:57:52 by mkling           ###   ########.fr       */
+/*   Updated: 2024/09/23 13:44:37 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ t_dlst	*extract_bottom_node(t_dlst **src)
 	t_dlst	*bottom_node;
 
 	bottom_node = find_bottom_node(*src);
-	fprintf(stderr, "bottom = %d\n", bottom_node->data);
 	if ((*src))
 		bottom_node->prev->next = NULL;
 	bottom_node->prev = NULL;

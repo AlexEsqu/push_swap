@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:02:15 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/21 18:38:14 by mkling           ###   ########.fr       */
+/*   Updated: 2024/09/23 13:56:18 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int	main(int argc, char **argv)
 	init_stacks(argc, argv, &stack_a, &stack_b);
 	if (is_sorted(stack_a))
 		return (0);
-	test_cmd(&stack_a, &stack_b);
 	if (stack_len(stack_a) < 4)
 		tiny_sort(&stack_a);
 	else

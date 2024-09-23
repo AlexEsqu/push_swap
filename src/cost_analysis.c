@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cost_analysis.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 11:57:19 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/21 15:17:31 by mkling           ###   ########.fr       */
+/*   Updated: 2024/09/23 13:44:32 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,8 @@
 
 void	set_push_cost(t_dlst *stack_src, t_dlst *stack_dest)
 {
-	int	len_src;
 	int	len_dest;
 
-	len_src = stack_len(stack_src);
 	len_dest = stack_len(stack_dest);
 	while (stack_src)
 	{

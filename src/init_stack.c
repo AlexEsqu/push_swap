@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:38:35 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/21 16:10:23 by mkling           ###   ########.fr       */
+/*   Updated: 2024/09/23 13:45:51 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	init_stacks(int argc, char **argv, t_dlst **stack_a, t_dlst **stack_b)
 	i = 0;
 	(*stack_a) = NULL;
 	(*stack_b) = NULL;
-	if (argc < 2)
-		error_exit(NULL);
+	if (argc < 2 || argv[1][0] == '\0')
+		exit(1);
 	if (argc == 2)
 		input_array = ft_split(argv[1], ' ');
 	if (argc > 2)

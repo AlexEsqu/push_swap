@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 14:11:15 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/21 19:02:19 by mkling           ###   ########.fr       */
+/*   Updated: 2024/09/23 13:43:12 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	rotate_up(t_dlst **stack, t_dlst **if_other_stack)
 {
 	t_dlst	*top_node;
 
-	if (*stack == NULL)
+	if (!(*stack) || !(*stack)->next)
 		return ;
 	top_node = extract_top_node(stack);
 	add_on_bottom_of_stack(stack, top_node);
@@ -48,7 +48,8 @@ void	rotate_up(t_dlst **stack, t_dlst **if_other_stack)
 			write(1, "rb\n", 3);
 		return ;
 	}
-	else
+	if (!*if_other_stack || !(*if_other_stack)->next)
+		return ;
 	top_node = extract_top_node(if_other_stack);
 	add_on_bottom_of_stack(if_other_stack, top_node);
 	write(1, "rr\n", 3);
@@ -58,7 +59,7 @@ void	rotate_down(t_dlst **stack, t_dlst **if_other_stack)
 {
 	t_dlst	*bottom_node;
 
-	if (*stack == NULL || stack_len(*stack) == 1)
+	if (!(*stack) || !(*stack)->next)
 		return ;
 	bottom_node = extract_bottom_node(stack);
 	add_on_top_of_stack(stack, bottom_node);
@@ -70,7 +71,7 @@ void	rotate_down(t_dlst **stack, t_dlst **if_other_stack)
 			write(1, "rrb\n", 4);
 		return ;
 	}
-	if (*if_other_stack == NULL || stack_len(*if_other_stack) == 1)
+	if (!*if_other_stack || !(*if_other_stack)->next)
 		return ;
 	bottom_node = extract_bottom_node(if_other_stack);
 	add_on_bottom_of_stack(if_other_stack, bottom_node);
@@ -88,7 +89,7 @@ void	ft_swap(int *num1, int *num2)
 
 void	swap_top(t_dlst **stack, t_dlst **if_other_stack)
 {
-	if ((*stack) == NULL | (*stack)->next == NULL)
+	if (!(*stack) | !(*stack)->next)
 		return ;
 	ft_swap(&(*stack)->data, &(*stack)->next->data);
 	if (if_other_stack == NULL)
