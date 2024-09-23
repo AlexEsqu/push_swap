@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:02:12 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/23 15:19:20 by alex             ###   ########.fr       */
+/*   Updated: 2024/09/23 16:42:30 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,17 @@
 # include <stdbool.h>
 # include "../inc/libft/libft.h"
 
-typedef struct s_doublelst {
+typedef struct s_doublelst
+{
 	int					data;
 	int					index;
 	int					push_cost;
 	bool				is_above_median;
-	int					e_stack;
+	char				stack_id;
 	struct s_doublelst	*next;
 	struct s_doublelst	*prev;
 	struct s_doublelst	*target;
 }	t_dlst;
-
-enum	e_stack {
-	STACK_A,
-	STACK_B,
-};
 
 /* STACK HANDLING */
 void	init_stacks(int argc, char **argv, t_dlst **stack_a, t_dlst **stack_b);
@@ -73,6 +69,7 @@ int		is_overflow(long num);
 int		is_duplicate(t_dlst *stack, int num);
 int		contains_non_digit(char *str);
 int		error_exit(t_dlst *stack);
+void	doublelst_clear(t_dlst *stack);
 
 /* DEBUG */
 void	print_stack(t_dlst **stack);

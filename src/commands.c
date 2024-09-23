@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 14:11:15 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/23 15:17:04 by alex             ###   ########.fr       */
+/*   Updated: 2024/09/23 16:41:59 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,33 +20,29 @@ void	push_top(t_dlst **src, t_dlst **dest)
 		return ;
 	top_node = extract_top_node(src);
 	add_on_top_of_stack(dest, top_node);
-	if (top_node->e_stack == STACK_B)
+	if (top_node->stack_id == 'b')
 	{
 		write(1, "pa\n", 3);
-		top_node->e_stack = STACK_A;
+		top_node->stack_id = 'a';
 	}
 	else
 	{
-		top_node->e_stack = STACK_B;
+		top_node->stack_id = 'b';
 		write(1, "pb\n", 3);
 	}
 }
 
 void	rotate_up(t_dlst **stack, t_dlst **if_other_stack)
 {
-	t_dlst	*bottom;
+	t_dlst	*top;
 
 	if (!(*stack) || !(*stack)->next)
 		return ;
-	bottom = find_bottom_node(*stack);
-	bottom->next = *stack;
-	*stack = (*stack)->next;
-	(*stack)->prev = NULL;
-	bottom->next->prev = bottom;
-	bottom->next->next = NULL;
+	top = extract_top_node(stack);
+	add_on_bottom_of_stack(stack, top);
 	if (if_other_stack == NULL)
 	{
-		if ((*stack)->e_stack == STACK_A)
+		if ((*stack)->stack_id == 'a')
 			write(1, "ra\n", 3);
 		else
 			write(1, "rb\n", 3);
@@ -54,12 +50,8 @@ void	rotate_up(t_dlst **stack, t_dlst **if_other_stack)
 	}
 	if (!*if_other_stack || !(*if_other_stack)->next)
 		return ;
-	bottom = find_bottom_node(*if_other_stack);
-	bottom->next = *if_other_stack;
-	*if_other_stack = (*if_other_stack)->next;
-	(*if_other_stack)->prev = NULL;
-	bottom->next->prev = bottom;
-	bottom->next->next = NULL;
+	top = extract_top_node(if_other_stack);
+	add_on_bottom_of_stack(if_other_stack, top);
 	write(1, "rr\n", 3);
 }
 
@@ -69,55 +61,42 @@ void	rotate_down(t_dlst **stack, t_dlst **if_other_stack)
 
 	if (!*stack || !(*stack)->next)
 		return ;
-	bottom = find_bottom_node(*stack);
-	bottom->prev->next = NULL;
-	bottom->next = *stack;
-	bottom->prev = NULL;
-	*stack = bottom;
-	bottom->next->prev = bottom;
+	bottom = extract_bottom_node(stack);
+	add_on_top_of_stack(stack, bottom);
 	if (if_other_stack == NULL)
 	{
-		if (bottom->e_stack == STACK_A)
+		if (bottom->stack_id == 'a')
 			write(1, "rra\n", 4);
-		else if (bottom->e_stack == STACK_B)
+		else if (bottom->stack_id == 'b')
 			write(1, "rrb\n", 4);
 		return ;
 	}
 	if (!*if_other_stack || !(*if_other_stack)->next)
 		return ;
-	bottom = find_bottom_node(*if_other_stack);
-	bottom->prev->next = NULL;
-	bottom->next = *if_other_stack;
-	bottom->prev = NULL;
-	*if_other_stack = bottom;
-	bottom->next->prev = bottom;
+	bottom = extract_bottom_node(if_other_stack);
+	add_on_top_of_stack(if_other_stack, bottom);
 	write(1, "rrr\n", 4);
-}
-
-void	ft_swap(int *num1, int *num2)
-{
-	int	tmp;
-
-	tmp = *num1;
-	*num1 = *num2;
-	*num2 = tmp;
 }
 
 void	swap_top(t_dlst **stack, t_dlst **if_other_stack)
 {
+	int	tmp;
+
 	if (!(*stack) | !(*stack)->next)
 		return ;
-	ft_swap(&(*stack)->data, &(*stack)->next->data);
+	tmp = (*stack)->data;
+	(*stack)->data = (*stack)->next->data;
+	(*stack)->next->data = tmp;
 	if (if_other_stack == NULL)
 	{
-		if ((*stack)->e_stack == STACK_A)
+		if ((*stack)->stack_id == 'a')
 			write(1, "sa\n", 3);
 		else
 			write(1, "sb\n", 3);
 		return ;
 	}
-	ft_swap(&(*if_other_stack)->data, &(*if_other_stack)->next->data);
+	tmp = (*if_other_stack)->data;
+	(*if_other_stack)->data = (*if_other_stack)->next->data;
+	(*if_other_stack)->next->data = tmp;
 	write(1, "ss\n", 3);
 }
-
-

@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 17:17:03 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/23 15:21:41 by alex             ###   ########.fr       */
+/*   Updated: 2024/09/23 16:41:04 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ t_dlst	*extract_bottom_node(t_dlst **src)
 	t_dlst	*bottom_node;
 
 	bottom_node = find_bottom_node(*src);
-	if ((*src))
-		bottom_node->prev->next = NULL;
+	bottom_node->prev->next = NULL;
 	bottom_node->prev = NULL;
 	bottom_node->next = NULL;
 	return (bottom_node);

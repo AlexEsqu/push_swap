@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sorting.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:49:47 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/21 15:52:05 by mkling           ###   ########.fr       */
+/*   Updated: 2024/09/23 16:39:33 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,3 @@ void	mecha_turk_sort(t_dlst **stack_a, t_dlst **stack_b)
 	}
 	rotate_to_top(stack_a, find_smallest_num_in_stack(*stack_a));
 }
-

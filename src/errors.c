@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:50:53 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/23 15:19:10 by alex             ###   ########.fr       */
+/*   Updated: 2024/09/23 16:39:05 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,4 @@ int	error_exit(t_dlst *stack)
 		doublelst_clear(stack);
 	write(1, "Error\n", 6);
 	exit(1);
-}
-
-void	success_exit(t_dlst *stack_a)
-{
-	doublelst_clear(stack_a);
-	exit(0);
 }

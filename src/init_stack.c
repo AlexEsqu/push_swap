@@ -6,7 +6,7 @@
 /*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:38:35 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/23 15:20:51 by alex             ###   ########.fr       */
+/*   Updated: 2024/09/23 16:41:50 by alex             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_dlst	*doublelst_new(int content)
 	node->data = content;
 	node->next = NULL;
 	node->prev = NULL;
-	node->e_stack = STACK_A;
+	node->stack_id = 'a';
 	return (node);
 }
 
@@ -39,6 +39,12 @@ void	put_nbr_at_bottom_stack(char *nbr, t_dlst **stack)
 	if (!node)
 		error_exit(*stack);
 	add_on_bottom_of_stack(stack, node);
+}
+
+void	success_exit(t_dlst *stack_a)
+{
+	doublelst_clear(stack_a);
+	exit(0);
 }
 
 void	init_stacks(int argc, char **argv, t_dlst **stack_a, t_dlst **stack_b)
