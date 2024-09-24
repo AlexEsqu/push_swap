@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:02:12 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/23 17:05:51 by alex             ###   ########.fr       */
+/*   Updated: 2024/09/24 12:48:31 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ t_dlst	*find_smallest_num_in_stack(t_dlst *stack);
 void	set_index(t_dlst *stack, t_dlst *if_other_stack);
 void	set_target_closest_bigger(t_dlst *stack_src, t_dlst *stack_dest);
 void	set_target_closest_smaller(t_dlst *stack_src, t_dlst *stack_dest);
-
 
 /* COMMANDS */
 void	swap_top(t_dlst **stack, t_dlst **if_other_stack);

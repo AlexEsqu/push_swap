@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:50:53 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/23 16:39:05 by alex             ###   ########.fr       */
+/*   Updated: 2024/09/24 16:35:33 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,25 @@ int	is_duplicate(t_dlst *stack, int num)
 
 int	contains_non_digit(char *str)
 {
+	int	sign;
+
+	sign = 0;
 	while (*str == ' ' || *str == '\t' || *str == '\n'
 		|| *str == '\r' || *str == '\f' || *str == '\v')
 		str++;
 	if (*str == '-' || *str == '+')
+	{
+		sign = 1;
 		str++;
+	}
 	while (*str)
 	{
 		if (!ft_isdigit(*str))
 			return (1);
+		sign = 0;
 		str++;
 	}
-	return (0);
+	return (sign);
 }
 
 void	doublelst_clear(t_dlst *stack)
@@ -67,6 +74,6 @@ int	error_exit(t_dlst *stack)
 {
 	if (stack)
 		doublelst_clear(stack);
-	write(1, "Error\n", 6);
+	write(2, "Error\n", 6);
 	exit(1);
 }

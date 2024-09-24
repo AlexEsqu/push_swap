@@ -6,7 +6,7 @@
 #    By: mkling <mkling@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/14 14:56:12 by mkling            #+#    #+#              #
-#    Updated: 2024/09/18 11:25:24 by mkling           ###   ########.fr        #
+#    Updated: 2024/09/24 12:35:12 by mkling           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,8 +48,8 @@ clean:
 			rm -rf $(BIN_DIR)
 
 fclean:		clean
-			$(MAKE) -C .inc/libft fclean
 			rm -rf $(NAME)
+			rm -rf ./inc/libft.a
 
 re:			fclean all
 

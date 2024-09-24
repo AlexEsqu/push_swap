@@ -3,41 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   sorting.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:49:47 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/23 17:04:11 by alex             ###   ########.fr       */
+/*   Updated: 2024/09/24 14:30:12 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	tiny_sort(t_dlst **stack)
-{
-	if (is_sorted(*stack))
-		return ;
-	if (stack_len(*stack) > 2)
-	{
-		if ((*stack)->next->data > (*stack)->next->next->data)
-		{
-			swap_top(stack, NULL);
-			rotate_up(stack, NULL);
-		}
-		if ((*stack)->data > (*stack)->next->next->data)
-			rotate_up(stack, NULL);
-	}
-	if ((*stack)->data > (*stack)->next->data)
-		swap_top(stack, NULL);
-}
-
 static void	set_push_cost(t_dlst *stack_src, t_dlst *stack_dest)
 {
+	int	len_src;
 	int	len_dest;
 
+	len_src = stack_len(stack_src);
 	len_dest = stack_len(stack_dest);
 	while (stack_src)
 	{
 		stack_src->push_cost = stack_src->index;
+		if (!stack_src->is_above_median)
+		{
+			stack_src->push_cost = len_src - stack_src->index;
+			if (!stack_src->target->is_above_median)
+			{
+				stack_src->push_cost += len_dest - stack_src->target->index;
+				stack_src->push_cost = stack_src->push_cost / 2;
+			}
+		}
 		if (stack_src->target->is_above_median)
 			stack_src->push_cost += stack_src->target->index;
 		else
@@ -102,4 +95,3 @@ void	mecha_turk_sort(t_dlst **stack_a, t_dlst **stack_b)
 	}
 	rotate_to_top(stack_a, find_smallest_num_in_stack(*stack_a));
 }
-

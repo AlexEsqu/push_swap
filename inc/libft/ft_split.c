@@ -6,14 +6,14 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/26 17:51:52 by mkling            #+#    #+#             */
-/*   Updated: 2024/06/02 15:04:53 by mkling           ###   ########.fr       */
+/*   Updated: 2024/09/24 16:12:56 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-static size_t	countword(const char *str, char sep)
+size_t	countword(const char *str, char sep)
 {
 	size_t	i;
 	size_t	num_word;
