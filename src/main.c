@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:02:15 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/24 14:14:25 by mkling           ###   ########.fr       */
+/*   Updated: 2024/09/30 16:48:56 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 	init_stacks(argc, argv, &stack_a, &stack_b);
 	while (!is_sorted(stack_a))
 	{
-		if (stack_len(stack_a) < 4)
+		if (stack_len(stack_a) <= 3)
 			tiny_sort(&stack_a);
 		else
 			mecha_turk_sort(&stack_a, &stack_b);
@@ -45,23 +45,23 @@ int	main(int argc, char **argv)
 // 	// print_both_stacks(stack_a, stack_b);
 // }
 
-// void	print_stack(t_dlst **stack)
-// {
-// 	t_dlst	*current;
+void	print_stack(t_dlst **stack)
+{
+	t_dlst	*current;
 
-// 	if (!(*stack))
-// 		return ;
-// 	current = (*stack);
-// 	fprintf(stderr, "printing stack\n");
-// 	while (current != NULL)
-// 	{
-// 		fprintf(stderr, "node = %d\n", current->data);
-// 		current = current->next;
-// 	}
-// }
+	if (!(*stack))
+		return ;
+	current = (*stack);
+	fprintf(stderr, "printing stack\n");
+	while (current != NULL)
+	{
+		fprintf(stderr, "node = %d\n", current->data);
+		current = current->next;
+	}
+}
 
-// void	print_both_stacks(t_dlst **a, t_dlst **b)
-// {
-// 	print_stack(a);
-// 	print_stack(b);
-// }
+void	print_both_stacks(t_dlst **a, t_dlst **b)
+{
+	print_stack(a);
+	print_stack(b);
+}
