@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 11:36:43 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/21 15:35:21 by mkling           ###   ########.fr       */
+/*   Updated: 2024/09/30 18:43:59 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,29 @@
 
 void	find_closest_smallest(t_dlst *node, t_dlst *stack)
 {
-	t_dlst	*current;
+	t_dlst	*possible_target;
 
-	current = stack;
-	while (current)
+	possible_target = stack;
+	while (possible_target)
 	{
-		if ((current->data < node->data) && (node->target == NULL
-				|| current->data > node->target->data))
-			node->target = current;
-		current = current->next;
+		if ((possible_target->data < node->data) && (node->target == NULL
+				|| possible_target->data > node->target->data))
+			node->target = possible_target;
+		possible_target = possible_target->next;
 	}
 }
 
 void	find_closest_bigger(t_dlst *node, t_dlst *stack)
 {
-	t_dlst	*current;
+	t_dlst	*possible_target;
 
-	current = stack;
-	while (current)
+	possible_target = stack;
+	while (possible_target)
 	{
-		if ((current->data > node->data) && (node->target == NULL
-				|| current->data < node->target->data))
-			node->target = current;
-		current = current->next;
+		if ((possible_target->data > node->data) && (node->target == NULL
+				|| possible_target->data < node->target->data))
+			node->target = possible_target;
+		possible_target = possible_target->next;
 	}
 }
 

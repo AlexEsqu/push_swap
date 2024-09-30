@@ -6,29 +6,11 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 17:13:01 by alex              #+#    #+#             */
-/*   Updated: 2024/09/24 16:35:28 by mkling           ###   ########.fr       */
+/*   Updated: 2024/09/30 16:07:37 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	tiny_sort(t_dlst **stack)
-{
-	if (is_sorted(*stack))
-		return ;
-	if (stack_len(*stack) > 2)
-	{
-		if ((*stack)->next->data > (*stack)->next->next->data)
-		{
-			swap_top(stack, NULL);
-			rotate_up(stack, NULL);
-		}
-		if ((*stack)->data > (*stack)->next->next->data)
-			rotate_up(stack, NULL);
-	}
-	if ((*stack)->data > (*stack)->next->data)
-		swap_top(stack, NULL);
-}
 
 void	rotate_to_top(t_dlst **stack, t_dlst *node)
 {

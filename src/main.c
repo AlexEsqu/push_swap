@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:02:15 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/24 14:14:25 by mkling           ###   ########.fr       */
+/*   Updated: 2024/09/30 18:10:37 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	main(int argc, char **argv)
 	t_dlst	*stack_b;
 
 	init_stacks(argc, argv, &stack_a, &stack_b);
-	while (!is_sorted(stack_a))
+	if (!is_sorted(stack_a))
 	{
-		if (stack_len(stack_a) < 4)
+		if (stack_len(stack_a) <= 3)
 			tiny_sort(&stack_a);
 		else
 			mecha_turk_sort(&stack_a, &stack_b);

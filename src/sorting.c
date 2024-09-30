@@ -6,72 +6,83 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:49:47 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/24 14:30:12 by mkling           ###   ########.fr       */
+/*   Updated: 2024/09/30 17:21:33 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	set_push_cost(t_dlst *stack_src, t_dlst *stack_dest)
+static int	cost_to_top(t_dlst *node, int stack_len)
 {
-	int	len_src;
-	int	len_dest;
+	int	cost;
 
-	len_src = stack_len(stack_src);
-	len_dest = stack_len(stack_dest);
-	while (stack_src)
+	if (node->is_above_median)
+		cost = node->index;
+	else
+		cost = stack_len - node->index;
+	return (cost);
+}
+
+static void	set_push_cost(t_dlst *a, t_dlst *b)
+{
+	int	len_a;
+	int	len_b;
+
+	len_a = stack_len(a);
+	len_b = stack_len(b);
+	while (a)
 	{
-		stack_src->push_cost = stack_src->index;
-		if (!stack_src->is_above_median)
+		if ((a->is_above_median && a->target->is_above_median)
+			|| (!a->is_above_median && !a->target->is_above_median))
 		{
-			stack_src->push_cost = len_src - stack_src->index;
-			if (!stack_src->target->is_above_median)
-			{
-				stack_src->push_cost += len_dest - stack_src->target->index;
-				stack_src->push_cost = stack_src->push_cost / 2;
-			}
+			if (cost_to_top(a, len_a) > cost_to_top(a->target, len_b))
+				a->push_cost = cost_to_top(a, len_a);
+			else
+				a->push_cost = cost_to_top(a->target, len_b);
 		}
-		if (stack_src->target->is_above_median)
-			stack_src->push_cost += stack_src->target->index;
 		else
-			stack_src->push_cost += len_dest - stack_src->target->index;
-		stack_src = stack_src->next;
+			a->push_cost = cost_to_top(a, len_a)
+				+ cost_to_top(a->target, len_b);
+		a = a->next;
 	}
 }
 
-static t_dlst	*get_cheapest_move(t_dlst *stack_src)
+static t_dlst	*get_cheapest_move(t_dlst *a)
 {
 	t_dlst	*cheapest;
 
-	cheapest = stack_src;
-	while (stack_src)
+	cheapest = a;
+	while (a)
 	{
-		if (stack_src->push_cost == 0)
-			return (stack_src);
-		if (stack_src->push_cost < cheapest->push_cost)
-			cheapest = stack_src;
-		stack_src = stack_src->next;
+		if (a->push_cost == 0)
+			return (a);
+		if (a->push_cost < cheapest->push_cost)
+			cheapest = a;
+		a = a->next;
 	}
 	return (cheapest);
 }
 
-static void	push_cheapest(t_dlst **stack_src, t_dlst **stack_dest)
+static void	push_cheapest(t_dlst **src, t_dlst **dest)
 {
 	t_dlst	*cheapest;
 
-	cheapest = get_cheapest_move(*stack_src);
-	while ((*stack_src)->data != cheapest->data)
+	if ((*src)->stack_id == 'a')
+		cheapest = get_cheapest_move(*src);
+	else
+		cheapest = (*src);
+	while ((*src)->data != cheapest->data)
 	{
 		if (!cheapest->is_above_median && !cheapest->target->is_above_median)
-			rotate_down(stack_src, stack_dest);
+			rotate_down(src, dest);
 		else if (cheapest->is_above_median && cheapest->target->is_above_median)
-			rotate_up(stack_src, stack_dest);
+			rotate_up(src, dest);
 		else
 			break ;
 	}
-	rotate_to_top(stack_src, cheapest);
-	rotate_to_top(stack_dest, cheapest->target);
-	push_top(stack_src, stack_dest);
+	rotate_to_top(src, cheapest);
+	rotate_to_top(dest, cheapest->target);
+	push_top(src, dest);
 }
 
 void	mecha_turk_sort(t_dlst **stack_a, t_dlst **stack_b)
@@ -85,7 +96,7 @@ void	mecha_turk_sort(t_dlst **stack_a, t_dlst **stack_b)
 		set_push_cost(*stack_a, *stack_b);
 		push_cheapest(stack_a, stack_b);
 	}
-	tiny_sort(stack_a);
+	tiny_sort_to_nearest_rotation(stack_a);
 	while (stack_len(*stack_b) > 0)
 	{
 		set_index(*stack_a, *stack_b);
