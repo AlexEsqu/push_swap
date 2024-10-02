@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:15:08 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/24 16:13:04 by mkling           ###   ########.fr       */
+/*   Updated: 2024/09/30 15:46:05 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,7 @@ char	*ft_strjoinfree(char *s1, char const *s2);
 void	ft_free_tab(char **array);
 long	ft_atol(const char *str);
 size_t	countword(const char *str, char sep);
+int		ft_min(int num1, int num2);
+int		ft_max(int num1, int num2);
 
 #endif

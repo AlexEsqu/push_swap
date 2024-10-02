@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:02:12 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/24 12:48:31 by mkling           ###   ########.fr       */
+/*   Updated: 2024/09/30 18:03:41 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	rotate_down(t_dlst **stack, t_dlst **if_other_stack);
 /* SORTING */
 int		is_sorted(t_dlst *stack);
 void	tiny_sort(t_dlst **stack_a);
+void	tiny_sort_to_nearest_rotation(t_dlst **stack);
 void	mecha_turk_sort(t_dlst **stack_a, t_dlst **stack_b);
 void	rotate_to_top(t_dlst **stack, t_dlst *node);
 
@@ -68,7 +69,7 @@ int		error_exit(t_dlst *stack);
 void	doublelst_clear(t_dlst *stack);
 
 /* DEBUG */
-void	print_stack(t_dlst **stack);
-void	print_both_stacks(t_dlst **a, t_dlst **b);
+// void	print_stack(t_dlst **stack);
+// void	print_both_stacks(t_dlst **a, t_dlst **b);
 
 #endif

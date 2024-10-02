@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:49:47 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/30 17:01:40 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/02 09:39:43 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,27 +23,22 @@ static int	cost_to_top(t_dlst *node, int stack_len)
 	return (cost);
 }
 
-static void	set_push_cost(t_dlst *a, t_dlst *b)
+static void	set_push_cost(t_dlst *src, t_dlst *dest)
 {
-	int	len_a;
-	int	len_b;
+	int	len_src;
+	int	len_dest;
+	int	tmp;
 
-	len_a = stack_len(a);
-	len_b = stack_len(b);
-	while (a)
+	len_src = stack_len(src);
+	len_dest = stack_len(dest);
+	while (src)
 	{
-		if ((a->is_above_median && a->target->is_above_median)
-			|| (!a->is_above_median && !a->target->is_above_median))
-		{
-			if (cost_to_top(a, len_a) > cost_to_top(a->target, len_b))
-				a->push_cost = cost_to_top(a, len_a);
-			else
-				a->push_cost = cost_to_top(a->target, len_b);
-		}
-		else
-			a->push_cost = cost_to_top(a, len_a)
-				+ cost_to_top(a->target, len_b);
-		a = a->next;
+		src->push_cost = ft_max(cost_to_top(src, len_src),
+				cost_to_top(src->target, len_dest));
+		if (src->is_above_median != src->target->is_above_median)
+			src->push_cost = cost_to_top(src, len_src)
+				+ cost_to_top(src->target, len_dest);
+		src = src->next;
 	}
 }
 
@@ -96,7 +91,7 @@ void	mecha_turk_sort(t_dlst **stack_a, t_dlst **stack_b)
 		set_push_cost(*stack_a, *stack_b);
 		push_cheapest(stack_a, stack_b);
 	}
-	tiny_sort(stack_a);
+	tiny_sort_to_nearest_rotation(stack_a);
 	while (stack_len(*stack_b) > 0)
 	{
 		set_index(*stack_a, *stack_b);
