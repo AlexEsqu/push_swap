@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:02:15 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/30 18:10:37 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/02 11:16:03 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,6 @@ int	main(int argc, char **argv)
 	doublelst_clear(stack_a);
 	return (0);
 }
-
-// void	test_cmd(t_dlst **stack_a, t_dlst **stack_b)
-// {
-// 	push_top(stack_a, stack_b);
-// 	print_both_stacks(stack_a, stack_b);
-// 	swap_top(stack_a, stack_a);
-// 	print_both_stacks(stack_a, stack_b);
-// 	rotate_up(stack_a, stack_b);
-// 	print_both_stacks(stack_a, stack_b);
-// 	rotate_down(stack_a, stack_b);
-// 	print_both_stacks(stack_a, stack_b);
-// 	// rotate_up(stack_a, NULL);
-// 	// print_both_stacks(stack_a, stack_b);
-// 	// rotate_down(stack_a, NULL);
-// 	// print_both_stacks(stack_a, stack_b);
-// }
 
 // void	print_stack(t_dlst **stack)
 // {

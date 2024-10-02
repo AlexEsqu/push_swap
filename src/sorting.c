@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:49:47 by mkling            #+#    #+#             */
-/*   Updated: 2024/10/02 09:39:43 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/02 11:17:12 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ static void	set_push_cost(t_dlst *src, t_dlst *dest)
 {
 	int	len_src;
 	int	len_dest;
-	int	tmp;
 
 	len_src = stack_len(src);
 	len_dest = stack_len(dest);
 	while (src)
 	{
-		src->push_cost = ft_max(cost_to_top(src, len_src),
+		if (src->is_above_median == src->target->is_above_median)
+			src->push_cost = ft_max(cost_to_top(src, len_src),
 				cost_to_top(src->target, len_dest));
 		if (src->is_above_median != src->target->is_above_median)
 			src->push_cost = cost_to_top(src, len_src)
@@ -49,8 +49,6 @@ static t_dlst	*get_cheapest_move(t_dlst *a)
 	cheapest = a;
 	while (a)
 	{
-		if (a->push_cost == 0)
-			return (a);
 		if (a->push_cost < cheapest->push_cost)
 			cheapest = a;
 		a = a->next;
