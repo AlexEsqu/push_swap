@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:49:47 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/30 17:21:33 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/02 11:17:12 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,27 +23,22 @@ static int	cost_to_top(t_dlst *node, int stack_len)
 	return (cost);
 }
 
-static void	set_push_cost(t_dlst *a, t_dlst *b)
+static void	set_push_cost(t_dlst *src, t_dlst *dest)
 {
-	int	len_a;
-	int	len_b;
+	int	len_src;
+	int	len_dest;
 
-	len_a = stack_len(a);
-	len_b = stack_len(b);
-	while (a)
+	len_src = stack_len(src);
+	len_dest = stack_len(dest);
+	while (src)
 	{
-		if ((a->is_above_median && a->target->is_above_median)
-			|| (!a->is_above_median && !a->target->is_above_median))
-		{
-			if (cost_to_top(a, len_a) > cost_to_top(a->target, len_b))
-				a->push_cost = cost_to_top(a, len_a);
-			else
-				a->push_cost = cost_to_top(a->target, len_b);
-		}
-		else
-			a->push_cost = cost_to_top(a, len_a)
-				+ cost_to_top(a->target, len_b);
-		a = a->next;
+		if (src->is_above_median == src->target->is_above_median)
+			src->push_cost = ft_max(cost_to_top(src, len_src),
+				cost_to_top(src->target, len_dest));
+		if (src->is_above_median != src->target->is_above_median)
+			src->push_cost = cost_to_top(src, len_src)
+				+ cost_to_top(src->target, len_dest);
+		src = src->next;
 	}
 }
 
@@ -54,8 +49,6 @@ static t_dlst	*get_cheapest_move(t_dlst *a)
 	cheapest = a;
 	while (a)
 	{
-		if (a->push_cost == 0)
-			return (a);
 		if (a->push_cost < cheapest->push_cost)
 			cheapest = a;
 		a = a->next;

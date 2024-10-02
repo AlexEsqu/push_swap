@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 13:49:47 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/24 16:09:16 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/02 09:58:39 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	set_index(t_dlst *stack, t_dlst *if_other_stack)
 	while (stack)
 	{
 		stack->index = index;
-		stack->is_above_median = (index < median);
+		stack->is_above_median = (index <= median);
 		index++;
 		stack = stack->next;
 	}
