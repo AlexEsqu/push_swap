@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:02:12 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/30 18:03:41 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/02 16:15:40 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,19 @@ typedef struct s_doublelst
 	int					index;
 	int					push_cost;
 	bool				is_above_median;
+	int					opti;
 	char				stack_id;
 	struct s_doublelst	*next;
 	struct s_doublelst	*prev;
 	struct s_doublelst	*target;
 }	t_dlst;
+
+enum e_optimization
+{
+	NONE = 0,
+	ROT_UP = 1,
+	REV_DO = 2,
+};
 
 /* STACK HANDLING */
 void	init_stacks(int argc, char **argv, t_dlst **stack_a, t_dlst **stack_b);
@@ -58,6 +66,9 @@ void	rotate_down(t_dlst **stack, t_dlst **if_other_stack);
 int		is_sorted(t_dlst *stack);
 void	tiny_sort(t_dlst **stack_a);
 void	tiny_sort_to_nearest_rotation(t_dlst **stack);
+void	set_push_cost(t_dlst *src, t_dlst *dest);
+void	push_cheapest(t_dlst **src, t_dlst **dest);
+void	five_sort(t_dlst **stack_a, t_dlst **stack_b);
 void	mecha_turk_sort(t_dlst **stack_a, t_dlst **stack_b);
 void	rotate_to_top(t_dlst **stack, t_dlst *node);
 
@@ -69,7 +80,7 @@ int		error_exit(t_dlst *stack);
 void	doublelst_clear(t_dlst *stack);
 
 /* DEBUG */
-// void	print_stack(t_dlst **stack);
-// void	print_both_stacks(t_dlst **a, t_dlst **b);
+void	print_stack(t_dlst **stack);
+void	print_both_stacks(t_dlst **a, t_dlst **b);
 
 #endif
