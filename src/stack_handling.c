@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 17:13:01 by alex              #+#    #+#             */
-/*   Updated: 2024/10/02 16:35:30 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/03 11:41:31 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,6 @@ void	init_stacks(int argc, char **argv, t_dlst **stack_a, t_dlst **stack_b)
 		exit(1);
 	while (input_array[i] != NULL)
 		put_nbr_at_bottom_stack(input_array[i++], stack_a);
+	if (argc == 2)
+		ft_free_tab(input_array);
 }
