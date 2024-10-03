@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:49:47 by mkling            #+#    #+#             */
-/*   Updated: 2024/10/02 16:33:54 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/03 10:48:55 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,30 +23,33 @@ static int	cost_to_top(t_dlst *node, int stack_len)
 	return (cost);
 }
 
-// static void	opti_double_rota(t_dlst *a, int len_a, int len_b)
-// {
-// 	int		double_rot_cost;
-// 	int		double_rev_cost;
-// 	t_dlst	*b;
+static void	opti_double_rota(t_dlst *a, int len_a, int len_b)
+{
+	int		rrr_cost;
+	int		rrev_cost;
+	t_dlst	*b;
 
-// 	a->opti = NONE;
-// 	b = a->target;
-// 	double_rot_cost = ft_min(a->index, b->index) + (ft_max(a->index, b->index) - ft_min(a->index, b->index));
-// 	if ((len_b - b->index) > (len_a - a->index))
-// 		double_rev_cost = (len_a - a->index) + ((len_b - b->index) - (len_a - a->index));
-// 	if ((len_b - b->index) < (len_a - a->index))
-// 		double_rev_cost = (len_b - b->index) + ((len_a - a->index) - (len_b - b->index));
-// 	if ((double_rot_cost < a->push_cost + 1))
-// 	{
-// 		a->push_cost = double_rot_cost + 1;
-// 		a->opti = ROT_UP;
-// 	}
-// 	if ((double_rev_cost < a->push_cost + 1))
-// 	{
-// 		a->push_cost = double_rev_cost + 1;
-// 		a->opti = REV_DO;
-// 	}
-// }
+	a->opti = NONE;
+	b = a->target;
+	rrr_cost = ft_min(a->index, b->index)
+		+ (ft_max(a->index, b->index) - ft_min(a->index, b->index));
+	if ((len_b - b->index) > (len_a - a->index))
+		rrev_cost = (len_a - a->index) + ((len_b - b->index)
+				- (len_a - a->index));
+	if ((len_b - b->index) < (len_a - a->index))
+		rrev_cost = (len_b - b->index) + ((len_a - a->index)
+				- (len_b - b->index));
+	if ((rrr_cost < a->push_cost + 1))
+	{
+		a->push_cost = rrr_cost + 1;
+		a->opti = ROT_UP;
+	}
+	if ((rrev_cost < a->push_cost + 1))
+	{
+		a->push_cost = rrev_cost + 1;
+		a->opti = REV_DO;
+	}
+}
 
 void	set_push_cost(t_dlst *src, t_dlst *dest)
 {
@@ -58,53 +61,50 @@ void	set_push_cost(t_dlst *src, t_dlst *dest)
 	set_index(src, dest);
 	while (src)
 	{
+		src->push_cost = cost_to_top(src, len_src)
+			+ cost_to_top(src->target, len_dest);
 		if (src->is_above_median == src->target->is_above_median)
 			src->push_cost = ft_max(cost_to_top(src, len_src),
 					cost_to_top(src->target, len_dest));
-		if (src->is_above_median != src->target->is_above_median)
-		{
-			src->push_cost = cost_to_top(src, len_src)
-				+ cost_to_top(src->target, len_dest);
-		}
 		src = src->next;
 	}
 }
 
 static t_dlst	*get_cheapest_move(t_dlst *a)
 {
-	t_dlst	*cheapest;
+	t_dlst	*cheap;
 
-	cheapest = a;
+	cheap = a;
 	while (a)
 	{
-		if (a->push_cost < cheapest->push_cost)
-			cheapest = a;
+		if (a->push_cost < cheap->push_cost)
+			cheap = a;
 		a = a->next;
 	}
-	return (cheapest);
+	return (cheap);
 }
 
 void	push_cheapest(t_dlst **src, t_dlst **dest)
 {
-	t_dlst	*cheapest;
+	t_dlst	*cheap;
 
 	if ((*src)->stack_id == 'a')
-		cheapest = get_cheapest_move(*src);
+		cheap = get_cheapest_move(*src);
 	else
-		cheapest = (*src);
-	while ((*src)->data != cheapest->data)
+		cheap = (*src);
+	while ((*src) != cheap && (*dest) != cheap->target)
 	{
-		if (!cheapest->is_above_median && (!cheapest->target->is_above_median))
-			rotate_down(src, dest);
-		else if (cheapest->is_above_median && (cheapest->target->is_above_median))
+		if (cheap->is_above_median && cheap->target->is_above_median)
 			rotate_up(src, dest);
-		else if (cheapest->index == 1 && cheapest->target->index == 1)
+		else if (!cheap->is_above_median && !cheap->target->is_above_median)
+			rotate_down(src, dest);
+		else if (cheap->index == 1 && cheap->target->index == 1)
 			swap_top(src, dest);
 		else
 			break ;
 	}
-	rotate_to_top(src, cheapest);
-	rotate_to_top(dest, cheapest->target);
+	rotate_to_top(src, cheap);
+	rotate_to_top(dest, cheap->target);
 	push_top(src, dest);
 }
 
@@ -124,7 +124,6 @@ void	mecha_turk_sort(t_dlst **stack_a, t_dlst **stack_b)
 	{
 		set_index(*stack_a, *stack_b);
 		set_target_closest_bigger(*stack_b, *stack_a);
-		set_push_cost(*stack_b, *stack_a);
 		push_cheapest(stack_b, stack_a);
 	}
 	rotate_to_top(stack_a, find_smallest_num_in_stack(*stack_a));
