@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 19:32:09 by mkling            #+#    #+#             */
-/*   Updated: 2024/06/01 16:03:24 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/03 12:59:25 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,3 +23,13 @@ void	ft_lstiter(t_list *lst, void (*f)(void *))
 		iteri = iteri->next;
 	}
 }
+
+// void	ft_lstiterr(t_list *lst, void (*f)(void *))
+// {
+// 	if (!lst)
+// 		return ;
+// 	(*f)(lst->content);
+// 		return (ft_lstiterr(lst->next, f));
+// }
+
+

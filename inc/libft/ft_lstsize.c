@@ -6,16 +6,16 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 19:26:33 by mkling            #+#    #+#             */
-/*   Updated: 2024/06/01 13:28:06 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/03 12:59:23 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+int ft_lstsize(t_list *lst)
 {
-	int		i;
-	t_list	*iteri;
+	int i;
+	t_list *iteri;
 
 	i = 0;
 	if (lst == NULL)
@@ -28,3 +28,10 @@ int	ft_lstsize(t_list *lst)
 	}
 	return (i);
 }
+
+// int ft_lstsizer(t_list *lst)
+// {
+// 	if (!lst)
+// 		return 0;
+// 	return 1 + ft_lstsizer(lst->next);
+// }
