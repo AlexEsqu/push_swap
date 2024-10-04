@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 13:49:47 by mkling            #+#    #+#             */
-/*   Updated: 2024/10/04 19:33:48 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/04 20:27:20 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int	find_median_value(t_dlst *stack, int stack_len)
 		current = current->next;
 	}
 	ft_bubble_sort(num_tab, stack_len);
-	fprintf(stderr, "is sorted\n");
 	if (stack_len % 2 == 0)
 		median = num_tab[stack_len / 2];
 	else
