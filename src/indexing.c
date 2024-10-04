@@ -6,13 +6,13 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 13:49:47 by mkling            #+#    #+#             */
-/*   Updated: 2024/10/02 16:38:52 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/04 12:30:32 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_dlst	*find_biggest_num_in_stack(t_dlst *stack)
+t_dlst	*find_max(t_dlst *stack)
 {
 	t_dlst	*biggest;
 
@@ -26,7 +26,7 @@ t_dlst	*find_biggest_num_in_stack(t_dlst *stack)
 	return (biggest);
 }
 
-t_dlst	*find_smallest_num_in_stack(t_dlst *stack)
+t_dlst	*find_min(t_dlst *stack)
 {
 	t_dlst	*smallest;
 
@@ -40,17 +40,23 @@ t_dlst	*find_smallest_num_in_stack(t_dlst *stack)
 	return (smallest);
 }
 
-int	is_sorted(t_dlst *stack)
+int	find_median_value(t_dlst *stack, int stack_len)
 {
-	if (!stack)
-		return (true);
-	while (stack->next != NULL)
+	int		median;
+	int		*num_tab;
+	t_dlst	*current;
+
+	num_tab = ft_calloc((stack_len), sizeof(int));
+	current = stack;
+	while (current)
 	{
-		if (stack->data > stack->next->data)
-			return (false);
-		stack = stack->next;
+		num_tab[current->index] = current->data;
+		current = current->next;
 	}
-	return (true);
+	ft_bubble_sort(num_tab, stack_len);
+	median = num_tab[(stack_len + 1) / 2 -1];
+	free(num_tab);
+	return (median);
 }
 
 int	stack_len(t_dlst *stack)
@@ -69,14 +75,19 @@ int	stack_len(t_dlst *stack)
 void	set_index(t_dlst *stack, t_dlst *if_other_stack)
 {
 	int	index;
+	int	middle;
 	int	median;
+	int	len_stack;
 
 	index = 0;
-	median = stack_len(stack) / 2;
+	len_stack = stack_len(stack);
+	middle = len_stack / 2;
+	median = find_median_value(stack, len_stack);
 	while (stack)
 	{
 		stack->index = index;
-		stack->is_above_median = (index <= median);
+		stack->in_top_half = (index < middle);
+		stack->above_median = (stack->data > median);
 		index++;
 		stack = stack->next;
 	}

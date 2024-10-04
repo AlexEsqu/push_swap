@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 11:36:43 by mkling            #+#    #+#             */
-/*   Updated: 2024/10/03 10:07:07 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/04 11:49:43 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	set_target_closest_smaller(t_dlst *node, t_dlst *dest)
 			target = target->next;
 		}
 		if (node->target == NULL)
-			node->target = find_biggest_num_in_stack(dest);
+			node->target = find_max(dest);
 		node = node->next;
 	}
 }
@@ -49,7 +49,7 @@ void	set_target_closest_bigger(t_dlst *node, t_dlst *dest)
 			target = target->next;
 		}
 		if (node->target == NULL)
-			node->target = find_smallest_num_in_stack(dest);
+			node->target = find_min(dest);
 		node = node->next;
 	}
 }

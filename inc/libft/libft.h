@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:15:08 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/30 15:46:05 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/04 12:22:53 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,7 @@ long	ft_atol(const char *str);
 size_t	countword(const char *str, char sep);
 int		ft_min(int num1, int num2);
 int		ft_max(int num1, int num2);
+void	ft_bubble_sort(int	*num_array, int size_array);
+void	ft_swap_int(int *a, int *b);
 
 #endif

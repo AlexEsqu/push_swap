@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_tab.c                                      :+:      :+:    :+:   */
+/*   ft_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/10 13:53:31 by mkling            #+#    #+#             */
-/*   Updated: 2024/10/04 12:22:24 by mkling           ###   ########.fr       */
+/*   Created: 2024/10/04 12:08:43 by mkling            #+#    #+#             */
+/*   Updated: 2024/10/04 12:09:40 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_free_tab(char **array)
+void	ft_swap_int(int *a, int *b)
 {
-	size_t	i;
+	int	tmp;
 
-	i = 0;
-	while (array[i])
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
 }

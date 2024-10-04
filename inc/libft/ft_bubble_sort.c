@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_tab.c                                      :+:      :+:    :+:   */
+/*   ft_bubble_sort.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/10 13:53:31 by mkling            #+#    #+#             */
-/*   Updated: 2024/10/04 12:22:24 by mkling           ###   ########.fr       */
+/*   Created: 2024/10/04 12:06:19 by mkling            #+#    #+#             */
+/*   Updated: 2024/10/04 12:23:49 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_free_tab(char **array)
+void	ft_bubble_sort(int *num_array, int size_array)
 {
-	size_t	i;
+	int	index1;
+	int	index2;
 
-	i = 0;
-	while (array[i])
+	index1 = 0;
+	while (index1 < size_array)
 	{
-		free(array[i]);
-		i++;
+		index2 = 0;
+		while (index2 < size_array - index1 - 1)
+		{
+			if (num_array[index2] > num_array[index2 + 1])
+				ft_swap_int(&num_array[index2], &num_array[index2 + 1]);
+			index2++;
+		}
+		index1++;
 	}
-	free(array);
 }
