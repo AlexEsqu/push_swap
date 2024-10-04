@@ -6,11 +6,11 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:50:53 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/24 16:35:33 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/04 14:55:05 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../inc/push_swap.h"
 
 int	is_overflow(long num)
 {

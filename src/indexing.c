@@ -6,11 +6,11 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 13:49:47 by mkling            #+#    #+#             */
-/*   Updated: 2024/10/04 12:30:32 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/04 19:33:48 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../inc/push_swap.h"
 
 t_dlst	*find_max(t_dlst *stack)
 {
@@ -43,18 +43,25 @@ t_dlst	*find_min(t_dlst *stack)
 int	find_median_value(t_dlst *stack, int stack_len)
 {
 	int		median;
+	int		index;
 	int		*num_tab;
 	t_dlst	*current;
 
-	num_tab = ft_calloc((stack_len), sizeof(int));
+	num_tab = (int *)ft_calloc((stack_len + 1), sizeof(int));
 	current = stack;
+	index = 0;
 	while (current)
 	{
-		num_tab[current->index] = current->data;
+		num_tab[index] = current->data;
+		index++;
 		current = current->next;
 	}
 	ft_bubble_sort(num_tab, stack_len);
-	median = num_tab[(stack_len + 1) / 2 -1];
+	fprintf(stderr, "is sorted\n");
+	if (stack_len % 2 == 0)
+		median = num_tab[stack_len / 2];
+	else
+		median = (num_tab[stack_len / 2] + num_tab[(stack_len + 1) / 2]) / 2;
 	free(num_tab);
 	return (median);
 }
@@ -76,18 +83,15 @@ void	set_index(t_dlst *stack, t_dlst *if_other_stack)
 {
 	int	index;
 	int	middle;
-	int	median;
 	int	len_stack;
 
 	index = 0;
 	len_stack = stack_len(stack);
 	middle = len_stack / 2;
-	median = find_median_value(stack, len_stack);
 	while (stack)
 	{
 		stack->index = index;
 		stack->in_top_half = (index < middle);
-		stack->above_median = (stack->data > median);
 		index++;
 		stack = stack->next;
 	}

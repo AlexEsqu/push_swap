@@ -6,11 +6,11 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:02:15 by mkling            #+#    #+#             */
-/*   Updated: 2024/10/04 12:27:42 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/04 20:18:12 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../inc/push_swap.h"
 
 int	main(int argc, char **argv)
 {
@@ -26,6 +26,7 @@ int	main(int argc, char **argv)
 			mecha_turk_sort(&stack_a, &stack_b);
 	}
 	doublelst_clear(stack_a);
+	fprintf(stderr, "done\n");
 	return (0);
 }
 

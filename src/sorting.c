@@ -6,11 +6,11 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:49:47 by mkling            #+#    #+#             */
-/*   Updated: 2024/10/04 12:46:19 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/04 18:59:09 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../inc/push_swap.h"
 
 static int	cost_to_top(t_dlst *node, int stack_len)
 {
@@ -91,6 +91,7 @@ void	push_cheapest(t_dlst **src, t_dlst **dest)
 	cheap = get_cheapest_move(*src);
 	while ((*src) != cheap && (*dest) != cheap->target)
 	{
+		set_index(*src, *dest);
 		if (cheap->in_top_half && cheap->target->in_top_half)
 			rotate_up(src, dest);
 		else if (!cheap->in_top_half && !cheap->target->in_top_half)
@@ -118,7 +119,7 @@ void	mecha_turk_sort(t_dlst **a, t_dlst **b)
 	while (stack_len(*b) > 0)
 	{
 		set_index(*a, *b);
-		set_target_closest_smaller(*b, *a);
+		set_target_closest_bigger(*b, *a);
 		set_push_cost(*b, *a);
 		push_cheapest(b, a);
 	}

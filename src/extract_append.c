@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   extract_append.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alex <alex@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 17:17:03 by mkling            #+#    #+#             */
-/*   Updated: 2024/09/23 16:41:04 by alex             ###   ########.fr       */
+/*   Updated: 2024/10/04 14:55:08 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../inc/push_swap.h"
 
 t_dlst	*find_bottom_node(t_dlst *lst)
 {

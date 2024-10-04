@@ -6,11 +6,11 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 14:11:15 by mkling            #+#    #+#             */
-/*   Updated: 2024/10/02 11:29:40 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/04 14:54:42 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../inc/push_swap.h"
 
 void	push_top(t_dlst **src, t_dlst **dest)
 {

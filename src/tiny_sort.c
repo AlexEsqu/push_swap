@@ -6,11 +6,11 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 16:07:30 by mkling            #+#    #+#             */
-/*   Updated: 2024/10/04 12:46:42 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/04 17:07:43 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../inc/push_swap.h"
 
 int	is_sorted(t_dlst *stack)
 {

@@ -6,11 +6,11 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 11:36:43 by mkling            #+#    #+#             */
-/*   Updated: 2024/10/04 11:49:43 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/04 14:55:26 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../inc/push_swap.h"
 
 void	set_target_closest_smaller(t_dlst *node, t_dlst *dest)
 {

@@ -6,11 +6,11 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 17:13:01 by alex              #+#    #+#             */
-/*   Updated: 2024/10/04 11:44:40 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/04 18:56:09 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../inc/push_swap.h"
 
 void	rotate_to_top(t_dlst **stack, t_dlst *node)
 {
@@ -28,7 +28,7 @@ t_dlst	*doublelst_new(int content)
 {
 	t_dlst	*node;
 
-	node = malloc(sizeof(t_dlst));
+	node = (t_dlst *)malloc(sizeof(t_dlst));
 	if (!node)
 		return (NULL);
 	node->data = content;
@@ -53,6 +53,18 @@ void	put_nbr_at_bottom_stack(char *nbr, t_dlst **stack)
 	add_on_bottom_of_stack(stack, node);
 }
 
+void	set_if_above_median(t_dlst *a)
+{
+	int	median;
+
+	median = find_median_value(a, stack_len(a));
+	while (a)
+	{
+		a->above_median = (a->data > median);
+		a = a->next;
+	}
+}
+
 void	init_stacks(int argc, char **argv, t_dlst **stack_a, t_dlst **stack_b)
 {
 	int		i;
@@ -74,4 +86,5 @@ void	init_stacks(int argc, char **argv, t_dlst **stack_a, t_dlst **stack_b)
 		put_nbr_at_bottom_stack(input_array[i++], stack_a);
 	if (argc == 2)
 		ft_free_tab(input_array);
+	set_if_above_median(*stack_a);
 }
