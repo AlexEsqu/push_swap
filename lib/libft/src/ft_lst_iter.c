@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   ft_lst_iter.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 19:32:09 by mkling            #+#    #+#             */
-/*   Updated: 2024/10/04 16:00:58 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/06 17:55:42 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 
 int	ft_lstsize(t_list *lst)
 {
-	int	i;
+	int		i;
 	t_list	*iteri;
 
 	i = 0;
@@ -91,6 +91,3 @@ int	ft_lstsize(t_list *lst)
 // 		return 0;
 // 	return 1 + ft_lstsizer(lst->next);
 // }
-
-
-

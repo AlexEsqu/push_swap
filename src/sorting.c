@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:49:47 by mkling            #+#    #+#             */
-/*   Updated: 2024/10/04 18:59:09 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/06 17:54:46 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,6 @@ void	push_cheapest(t_dlst **src, t_dlst **dest)
 			rotate_up(src, dest);
 		else if (!cheap->in_top_half && !cheap->target->in_top_half)
 			rotate_down(src, dest);
-		else if (cheap->index == 1 && cheap->target->index == 1)
-			swap_top(src, dest);
 		else
 			break ;
 	}
