@@ -6,11 +6,12 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 17:27:11 by mkling            #+#    #+#             */
-/*   Updated: 2024/10/04 15:49:08 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/07 01:22:47 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/libft.h"
+#include <stdlib.h>
 
 int	ft_atoi(const char *str)
 {
@@ -57,4 +58,24 @@ long	ft_atol(const char *str)
 		result = result * 10 + (*str++ - '0');
 	result = result * sign;
 	return ((long)result);
+}
+
+int	is_too_long_for_int(char *str)
+{
+	int	digit_count;
+
+	digit_count = 0;
+	while (*str == ' ' || *str == '\t' || *str == '\n'
+		|| *str == '\r' || *str == '\f' || *str == '\v')
+		str++;
+	if (*str == '-' || *str == '+')
+		str++;
+	while ((*str) == '0')
+		str++;
+	while (ft_isdigit(*str))
+	{
+		digit_count++;
+		str++;
+	}
+	return (digit_count > 10);
 }

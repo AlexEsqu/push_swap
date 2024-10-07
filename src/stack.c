@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_handling.c                                   :+:      :+:    :+:   */
+/*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 17:13:01 by alex              #+#    #+#             */
-/*   Updated: 2024/10/04 18:56:09 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/07 02:47:34 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,21 @@ void	rotate_to_top(t_dlst **stack, t_dlst *node)
 		else
 			rotate_down(stack, NULL);
 	}
+}
+
+void	doublelst_clear(t_dlst *stack)
+{
+	t_dlst	*next_node;
+	t_dlst	*current_node;
+
+	current_node = stack;
+	while (current_node != NULL)
+	{
+		next_node = current_node->next;
+		free(current_node);
+		current_node = next_node;
+	}
+	stack = NULL;
 }
 
 t_dlst	*doublelst_new(int content)
@@ -43,26 +58,15 @@ void	put_nbr_at_bottom_stack(char *nbr, t_dlst **stack)
 	t_dlst	*node;
 	long	num;
 
+	if (is_too_long_for_int(nbr) || contains_non_digit(nbr))
+		error_exit(*stack);
 	num = ft_atol(nbr);
-	if (is_overflow(num) || is_duplicate(*stack, num)
-		|| contains_non_digit(nbr))
+	if (is_overflow(num) || is_duplicate(*stack, num))
 		error_exit(*stack);
 	node = doublelst_new(num);
 	if (!node)
 		error_exit(*stack);
 	add_on_bottom_of_stack(stack, node);
-}
-
-void	set_if_above_median(t_dlst *a)
-{
-	int	median;
-
-	median = find_median_value(a, stack_len(a));
-	while (a)
-	{
-		a->above_median = (a->data > median);
-		a = a->next;
-	}
 }
 
 void	init_stacks(int argc, char **argv, t_dlst **stack_a, t_dlst **stack_b)

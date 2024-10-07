@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:15:08 by mkling            #+#    #+#             */
-/*   Updated: 2024/10/04 18:39:30 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/07 01:17:18 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ int		ft_min(int num1, int num2);
 int		ft_max(int num1, int num2);
 void	ft_bubble_sort(int	*num_array, int size_array);
 void	ft_swap_int(int *a, int *b);
+int		is_too_long_for_int(char *str);
 
 #endif
