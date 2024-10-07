@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 12:02:12 by mkling            #+#    #+#             */
-/*   Updated: 2024/10/07 01:03:26 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/07 16:46:20 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_dlst	*find_min(t_dlst *stack);
 void	set_index(t_dlst *stack, t_dlst *if_other_stack);
 void	set_target_closest_bigger(t_dlst *stack_src, t_dlst *stack_dest);
 void	set_target_closest_smaller(t_dlst *stack_src, t_dlst *stack_dest);
-int		find_median_value(t_dlst *stack, int stack_len);
+void	set_if_above_median(t_dlst *a);
 
 /* COMMANDS */
 void	swap_top(t_dlst **stack, t_dlst **if_other_stack);

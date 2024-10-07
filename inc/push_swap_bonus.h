@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 00:55:42 by mkling            #+#    #+#             */
-/*   Updated: 2024/10/07 02:35:59 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/07 18:25:39 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ t_dlst	*find_bottom_node(t_dlst *lst);
 t_dlst	*extract_top_node(t_dlst **src);
 t_dlst	*extract_bottom_node(t_dlst **src);
 int		stack_len(t_dlst *stack);
+void	doublelst_clear(t_dlst *stack);
 
 /* ERRORS */
 int		is_overflow(long num);
 int		is_duplicate(t_dlst *stack, int num);
 int		contains_non_digit(char *str);
 int		is_valid_command(char *str);
-int		error_exit(t_dlst *stack, t_dlst *if_other_stack);
-void	doublelst_clear(t_dlst *stack);
+int		error_exit(t_dlst *stack, t_dlst *if_other_stack, char *line);
 
 /* COMMANDS */
 void	swap_top(t_dlst **a, t_dlst **b, char *cmd);
