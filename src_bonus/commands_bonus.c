@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 14:11:15 by mkling            #+#    #+#             */
-/*   Updated: 2024/10/07 02:48:52 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/07 02:51:00 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	rotate_up(t_dlst **a, t_dlst **b, char *cmd)
 		top = extract_top_node(b);
 		add_on_bottom_of_stack(b, top);
 	}
-	if (cmd[1] == 'r' && (cmd[2] != 'r'))
+	if (cmd[1] == 'r' && (cmd[2] == '\n'))
 	{
 		if (!(*a) || !(*a)->next || !(*b) || !(*b)->next)
 			error_exit((*a), (*b));
@@ -79,7 +79,7 @@ void	rotate_down(t_dlst **a, t_dlst **b, char *cmd)
 		bottom = extract_bottom_node(b);
 		add_on_top_of_stack(b, bottom);
 	}
-	if (cmd[2] != 'r')
+	if (cmd[2] == 'r')
 	{
 		if (!(*a) || !(*a)->next || !(*b) || !(*b)->next)
 			error_exit((*a), (*b));
