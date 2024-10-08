@@ -6,7 +6,7 @@
 #    By: mkling <mkling@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/14 14:56:12 by mkling            #+#    #+#              #
-#    Updated: 2024/10/07 16:58:17 by mkling           ###   ########.fr        #
+#    Updated: 2024/10/08 10:50:20 by mkling           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,7 +84,7 @@ debug:		$(OBJS)
 
 bonus_debug:$(OBJS_BON)
 			$(MAKE) -C ./lib/libft
-			$(CC) $(CFLAGS) -g -I$(INC_DIR) $(OBJS_BON) $(LIBS) -o $(NAME_BONUS)
+			$(CC) $(CFLAGS) -g3 -I$(INC_DIR) $(OBJS_BON) $(LIBS) -o $(NAME_BONUS)
 
 clean:
 			$(MAKE) -C ./lib/libft clean

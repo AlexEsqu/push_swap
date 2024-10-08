@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 00:55:42 by mkling            #+#    #+#             */
-/*   Updated: 2024/10/07 18:25:39 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/08 11:06:50 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,13 @@ void	swap_top(t_dlst **a, t_dlst **b, char *cmd);
 void	push_top(t_dlst **a, t_dlst **b, char *cmd);
 void	rotate_up(t_dlst **a, t_dlst **b, char *cmd);
 void	rotate_down(t_dlst **a, t_dlst **b, char *cmd);
+void	parse_command(char *line, t_dlst **stack_a, t_dlst **stack_b);
 
 /* SORTING */
 int		is_sorted(t_dlst *stack);
 
+// /* DEBUG */
+// void	print_stack(t_dlst **stack);
+// void	print_both_stacks(t_dlst **a, t_dlst **b);
 
 #endif

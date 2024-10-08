@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 17:13:01 by alex              #+#    #+#             */
-/*   Updated: 2024/10/07 02:47:53 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/08 11:06:09 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,27 @@ void	put_nbr_at_bottom_stack(char *nbr, t_dlst **stack)
 	long	num;
 
 	if (is_too_long_for_int(nbr) || contains_non_digit(nbr))
-		error_exit(*stack, NULL);
+		error_exit(*stack, NULL, NULL);
 	num = ft_atol(nbr);
 	if (is_overflow(num) || is_duplicate(*stack, num))
-		error_exit(*stack, NULL);
+		error_exit(*stack, NULL, NULL);
 	node = doublelst_new(num);
 	if (!node)
-		error_exit(*stack, NULL);
+		error_exit(*stack, NULL, NULL);
 	add_on_bottom_of_stack(stack, node);
+}
+
+int	is_sorted(t_dlst *stack)
+{
+	if (!stack)
+		return (1);
+	while (stack->next != NULL)
+	{
+		if (stack->data > stack->next->data)
+			return (0);
+		stack = stack->next;
+	}
+	return (1);
 }
 
 void	init_stacks(int argc, char **argv, t_dlst **stack_a, t_dlst **stack_b)
