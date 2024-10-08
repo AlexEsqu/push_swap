@@ -1,0 +1,9 @@
+[submodule "push_swap_tester"]
+	path = push_swap_tester
+	url = https://github.com/SimonCROS/push_swap_tester.git
+[submodule "push_swap_visualizer"]
+	path = push_swap_visualizer
+	url = https://github.com/o-reo/push_swap_visualizer.git
+[submodule "Push-Swap-Tester"]
+	path = Push-Swap-Tester
+	url = https://github.com/gemartin99/Push-Swap-Tester.git

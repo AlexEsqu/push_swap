@@ -6,13 +6,13 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 13:49:47 by mkling            #+#    #+#             */
-/*   Updated: 2024/10/02 16:38:52 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/07 16:46:00 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../inc/push_swap.h"
 
-t_dlst	*find_biggest_num_in_stack(t_dlst *stack)
+t_dlst	*find_max(t_dlst *stack)
 {
 	t_dlst	*biggest;
 
@@ -26,7 +26,7 @@ t_dlst	*find_biggest_num_in_stack(t_dlst *stack)
 	return (biggest);
 }
 
-t_dlst	*find_smallest_num_in_stack(t_dlst *stack)
+t_dlst	*find_min(t_dlst *stack)
 {
 	t_dlst	*smallest;
 
@@ -38,19 +38,6 @@ t_dlst	*find_smallest_num_in_stack(t_dlst *stack)
 		stack = stack->next;
 	}
 	return (smallest);
-}
-
-int	is_sorted(t_dlst *stack)
-{
-	if (!stack)
-		return (true);
-	while (stack->next != NULL)
-	{
-		if (stack->data > stack->next->data)
-			return (false);
-		stack = stack->next;
-	}
-	return (true);
 }
 
 int	stack_len(t_dlst *stack)
@@ -69,14 +56,16 @@ int	stack_len(t_dlst *stack)
 void	set_index(t_dlst *stack, t_dlst *if_other_stack)
 {
 	int	index;
-	int	median;
+	int	middle;
+	int	len_stack;
 
 	index = 0;
-	median = stack_len(stack) / 2;
+	len_stack = stack_len(stack);
+	middle = len_stack / 2;
 	while (stack)
 	{
 		stack->index = index;
-		stack->is_above_median = (index <= median);
+		stack->in_top_half = (index < middle);
 		index++;
 		stack = stack->next;
 	}

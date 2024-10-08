@@ -6,17 +6,17 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:49:47 by mkling            #+#    #+#             */
-/*   Updated: 2024/10/03 12:29:19 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/06 17:54:46 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../inc/push_swap.h"
 
 static int	cost_to_top(t_dlst *node, int stack_len)
 {
 	int	cost;
 
-	if (node->is_above_median)
+	if (node->in_top_half)
 		cost = node->index;
 	else
 		cost = stack_len - node->index;
@@ -63,7 +63,7 @@ void	set_push_cost(t_dlst *src, t_dlst *dest)
 	{
 		src->push_cost = cost_to_top(src, len_src)
 			+ cost_to_top(src->target, len_dest);
-		if (src->is_above_median == src->target->is_above_median)
+		if (src->in_top_half == src->target->in_top_half)
 			src->push_cost = ft_max(cost_to_top(src, len_src),
 					cost_to_top(src->target, len_dest));
 		src = src->next;
@@ -88,18 +88,14 @@ void	push_cheapest(t_dlst **src, t_dlst **dest)
 {
 	t_dlst	*cheap;
 
-	if ((*src)->stack_id == 'a')
-		cheap = get_cheapest_move(*src);
-	else
-		cheap = (*src);
+	cheap = get_cheapest_move(*src);
 	while ((*src) != cheap && (*dest) != cheap->target)
 	{
-		if (cheap->is_above_median && cheap->target->is_above_median)
+		set_index(*src, *dest);
+		if (cheap->in_top_half && cheap->target->in_top_half)
 			rotate_up(src, dest);
-		else if (!cheap->is_above_median && !cheap->target->is_above_median)
+		else if (!cheap->in_top_half && !cheap->target->in_top_half)
 			rotate_down(src, dest);
-		else if (cheap->index == 1 && cheap->target->index == 1)
-			swap_top(src, dest);
 		else
 			break ;
 	}
@@ -115,16 +111,15 @@ void	mecha_turk_sort(t_dlst **a, t_dlst **b)
 	while (stack_len(*a) > 3)
 	{
 		set_index(*a, *b);
-		set_target_closest_smaller(*a, *b);
-		set_push_cost(*a, *b);
-		push_cheapest(a, b);
+		push_big_to_top_small_to_bottom(a, b);
 	}
 	tiny_sort_to_nearest_rotation(a);
 	while (stack_len(*b) > 0)
 	{
 		set_index(*a, *b);
 		set_target_closest_bigger(*b, *a);
+		set_push_cost(*b, *a);
 		push_cheapest(b, a);
 	}
-	rotate_to_top(a, find_smallest_num_in_stack(*a));
+	rotate_to_top(a, find_min(*a));
 }
