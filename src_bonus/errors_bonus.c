@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 13:50:53 by mkling            #+#    #+#             */
-/*   Updated: 2024/10/07 18:25:52 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/08 14:42:32 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	is_valid_command(char *str)
 	return (0);
 }
 
-int	error_exit(t_dlst *stack, t_dlst *if_other_stack, char *line)
+int	error_exit(t_dlst **stack, t_dlst **if_other_stack, char *line)
 {
 	if (line)
 		free(line);
@@ -75,6 +75,6 @@ int	error_exit(t_dlst *stack, t_dlst *if_other_stack, char *line)
 		doublelst_clear(stack);
 	if (if_other_stack)
 		doublelst_clear(if_other_stack);
-	ft_putstr_fd("KO\n", 1);
+	ft_putstr_fd("Error\n", 2);
 	exit(1);
 }

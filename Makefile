@@ -6,7 +6,7 @@
 #    By: mkling <mkling@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/14 14:56:12 by mkling            #+#    #+#              #
-#    Updated: 2024/10/08 10:50:20 by mkling           ###   ########.fr        #
+#    Updated: 2024/10/08 14:41:12 by mkling           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,7 +76,7 @@ bonus: 		$(OBJS_BON)
 
 $(OBJB_DIR)/%.o:	$(SRCB_DIR)/%.c
 					mkdir -p $(OBJB_DIR)
-					$(CC) $(CFLAGS) -I$(INC_DIR) -c $< -o $@
+					$(CC) $(CFLAGS) -g3 -I$(INC_DIR) -c $< -o $@
 
 debug:		$(OBJS)
 			$(MAKE) -C ./lib/libft

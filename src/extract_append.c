@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 17:17:03 by mkling            #+#    #+#             */
-/*   Updated: 2024/10/04 14:55:08 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/08 14:52:51 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,16 @@ t_dlst	*extract_bottom_node(t_dlst **src)
 {
 	t_dlst	*bottom_node;
 
-	bottom_node = find_bottom_node(*src);
-	bottom_node->prev->next = NULL;
+	if (stack_len(*src) == 1)
+	{
+		bottom_node = (*src);
+		*src = NULL;
+	}
+	else
+	{
+		bottom_node = find_bottom_node(*src);
+		bottom_node->prev->next = NULL;
+	}
 	bottom_node->prev = NULL;
 	bottom_node->next = NULL;
 	return (bottom_node);

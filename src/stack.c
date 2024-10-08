@@ -6,7 +6,7 @@
 /*   By: mkling <mkling@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 17:13:01 by alex              #+#    #+#             */
-/*   Updated: 2024/10/07 02:47:34 by mkling           ###   ########.fr       */
+/*   Updated: 2024/10/08 13:07:56 by mkling           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,17 +77,22 @@ void	init_stacks(int argc, char **argv, t_dlst **stack_a, t_dlst **stack_b)
 	i = 0;
 	(*stack_a) = NULL;
 	(*stack_b) = NULL;
-	if ((argc < 2 || argv[1][0] == '\0')
-		|| (argc == 2 && countword(argv[1], ' ') < 2))
+	if (argc < 2)
 		exit(1);
 	if (argc == 2)
+	{
+		if (ft_strcmp(argv[1], "") == 0)
+			error_exit(NULL);
 		input_array = ft_split(argv[1], ' ');
+	}
 	if (argc > 2)
 		input_array = &argv[1];
-	if (!input_array)
-		exit(1);
 	while (input_array[i] != NULL)
+	{
+		if (ft_strcmp(input_array[i], "") == 0)
+			error_exit(*stack_a);
 		put_nbr_at_bottom_stack(input_array[i++], stack_a);
+	}
 	if (argc == 2)
 		ft_free_tab(input_array);
 	set_if_above_median(*stack_a);
